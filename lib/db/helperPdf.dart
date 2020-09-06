@@ -17,11 +17,7 @@ class HelperPdf extends HelperDb<PDF> {
   @override
   Future<PDF> save(PDF pdf) async {
     db.then((database) async {
-      try {
-        await database.insert(pdfTable, pdf.toMap());
-      } catch (e) {
-        print("Erro!");
-      }
+      await database.insert(pdfTable, pdf.toMap());
     });
     return pdf;
   }

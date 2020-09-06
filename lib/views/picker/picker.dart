@@ -4,6 +4,7 @@ import 'package:app_lib/main.dart';
 import 'package:app_lib/models/pdf.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
+import '../../widgets/alertBox.dart';
 
 class PickerScreen extends StatefulWidget {
   final currentDir;
@@ -138,7 +139,11 @@ class _PickerScreenState extends State<PickerScreen> {
                 ),
                 onPressed: () async {
                   for (PDF item in paths2save) {
-                    await HelperPdf.getInstance().save(item);
+                    try {
+                      await HelperPdf.getInstance().save(item);
+                    } catch (e) {
+                      Boxes.alertDialog(context, "Error saving $item.name");
+                    }
                   }
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) => MyApp()));

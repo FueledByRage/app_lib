@@ -1,3 +1,4 @@
+import 'package:app_lib/db/helperPdf.dart';
 import 'package:app_lib/provider/controller.dart';
 import 'package:app_lib/models/pdf.dart';
 import 'package:app_lib/views/reader/readerScreen.dart';
@@ -64,56 +65,59 @@ class _LibScreenState extends State<LibScreen> {
                                 Widget child) {
                           if (value.list.isNotEmpty) {
                             return ListView.separated(
+                                physics: BouncingScrollPhysics(),
                                 itemCount: value.list.length,
                                 separatorBuilder:
                                     (BuildContext context, int index) =>
                                         const Divider(),
                                 itemBuilder: (BuildContext context, int index) {
                                   PDF item = value.list[index];
-                                  return Padding(
-                                      padding: EdgeInsets.only(top: 10.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.lightBlue,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(24))),
-                                        child: ListTile(
-                                            /*leading: CircleAvatar(
-                                              backgroundColor:
-                                                  Colors.lightBlueAccent,
-                                              child: Text(
-                                                item.id.toString(),
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),*/
-                                            title: Text(
-                                              item.name,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            trailing: IconButton(
-                                                icon: item.favourite == 0 ||
-                                                        item.favourite == null
-                                                    ? Icon(Icons.star_border)
-                                                    : Icon(
-                                                        Icons.star,
-                                                        color: Color.fromRGBO(
-                                                            240, 98, 146, 1),
-                                                      ),
-                                                onPressed: () async {
-                                                  await value.update(item.id);
+                                  return Dismissible(
+                                      key: UniqueKey(),
+                                      onDismissed: (direction) {
+                                        HelperPdf.getInstance().delete(item.id);
+                                      },
+                                      child: Padding(
+                                          padding: EdgeInsets.only(top: 10.0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: Colors.lightBlue,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(24))),
+                                            child: ListTile(
+                                                title: Text(
+                                                  item.name,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                trailing: IconButton(
+                                                    icon: item.favourite == 0 ||
+                                                            item.favourite ==
+                                                                null
+                                                        ? Icon(
+                                                            Icons.star_border)
+                                                        : Icon(
+                                                            Icons.star,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    240,
+                                                                    98,
+                                                                    146,
+                                                                    1),
+                                                          ),
+                                                    onPressed: () async {
+                                                      await value
+                                                          .update(item.id);
+                                                    }),
+                                                onTap: () {
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              Reader(item.path,
+                                                                  item.name)));
                                                 }),
-                                            onTap: () {
-                                              Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          Reader(item.path,
-                                                              item.name)));
-                                            }),
-                                      ));
+                                          )));
                                 });
                           } else {
                             return Center(
