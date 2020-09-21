@@ -18,7 +18,7 @@ samples, guidance on mobile development, and a full API reference.
 # Why?
 My main goal with this project is to improve my skills and study flutter/dart :computer:
 
-#Plugins: :electric_plug:	
+# Plugins: :electric_plug:	
 
 - [Provider](https://pub.dev/packages/provider)
 - [Dowloads Path Provider](https://pub.dev/packages/downloads_path_provider)
@@ -26,7 +26,7 @@ My main goal with this project is to improve my skills and study flutter/dart :c
 - [Path](https://pub.dev/packages/path)
 - [Sqflite](https://pub.dev/packages/sqflite)
 
-#Features: :open_book:
+# Features: :open_book:
 
 - Register PDF document
 - Set document as favourite 
