@@ -1,6 +1,6 @@
 # app_lib
 
-A new Flutter project.
+A flutter PDF viewer
 
 ## Getting Started
 
