@@ -16,7 +16,7 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 # Why?
-My main goal with this project is to improve my skills and study flutter/dart :computer:
+My goals with this project are to improve my skills and study flutter/dart :computer:
 
 # Plugins: :electric_plug:	
 
