@@ -29,7 +29,6 @@ My goals with this project are to improve my skills and study flutter/dart :comp
 # Features: :open_book:
 
 - Register PDF document
-- Set document as favourite 
 - Document reader
 
 By: [Erik](https://www.linkedin.com/in/erik-natan-moreira-santos-983865195/) 
